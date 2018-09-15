@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<form id="logoutForm" method="post" action="${contextPath}/logout">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand centered" href="/index">TODOLIST</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="/goals">All</a></li>
+                <li class="active"><a href="/index">New</a></li>
+                <li class="active"><a href="/addTask">Uncompleted</a></li>
+                <li class="active"><a href="/addTask">Completed</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">${pageContext.request.userPrincipal.name}<b
+                            class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a onclick="document.forms['logoutForm'].submit()">Sign out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div id="headerwrap">
+    <div class="container">
+        <div class="row centered">
+            <form name="addTaskForm" method="POST" action="controller" autocomplete="off">
+    <input type="hidden" name="command" value="addtask"/>
+    <input type="hidden" name="login" value="${login}"/>
+
+    textField:<br/>
+    <input type="text" name="text_field" value=""/>
+    <br/>
+    ${user_exist}
+    <br/>
+    <br/>
+    <input class="submit" type="submit" value="Add"/>
+</form>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        <div class="row centered">
+            <a href="https://vk.com/bukhavtsov_artyom"><i class="fab fa-vk fa-2x"></i></a>
+            <a href="https://vk.com/bukhavtsov_artyom"><i class="fab fa-instagram fa-2x"></i></a>
+            <a href="https://vk.com/bukhavtsov_artyom"><i class="fab fa-github fa-2x"></i></a>
+        </div>
+    </div>
+</div>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+</body>
+</html>
