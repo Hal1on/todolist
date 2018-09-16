@@ -3,11 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
     <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 <form id="logoutForm" method="post" action="${contextPath}/logout">
@@ -45,17 +44,17 @@
     <div class="container">
         <div class="row centered">
             <form name="addTaskForm" method="POST" action="controller" autocomplete="off">
-    <input type="hidden" name="command" value="addtask"/>
-    <input type="hidden" name="login" value="${login}"/>
+                <input type="hidden" name="command" value="addtask"/>
+                <input type="hidden" name="login" value="${login}"/>
 
-    textField:<br/>
-    <input type="text" name="text_field" value=""/>
-    <br/>
-    ${user_exist}
-    <br/>
-    <br/>
-    <input class="submit" type="submit" value="Add"/>
-</form>
+                textField:<br/>
+                <input type="text" name="text_field" value=""/>
+                <br/>
+                ${user_exist}
+                <br/>
+                <br/>
+                <input class="submit" type="submit" value="Add"/>
+            </form>
         </div>
     </div>
 </div>

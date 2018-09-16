@@ -1,17 +1,15 @@
-/*
-$(document).ready(function () {
-
-    $('#loginForm').on('submit', function () {
+function scriptEdit(formName) {
+    var serializeField = "#" + formName;
+    $(document).ready(function () {
         $.ajax({
             url: 'controller',
             type: 'POST',
-            data: $('#loginForm').serialize(),
+            data: $(serializeField).serialize(),
             success: function suc(response) {
-
-                $('#loginForm').html(response);
+                $(serializeField).html(response);
             }
-        })
+        });
         return false;
-    })
 
-})*/
+    });
+}
