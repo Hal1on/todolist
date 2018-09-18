@@ -53,7 +53,6 @@ public class UserDAOImpl extends DBConnectionManager implements UserDAO {
      * Update User's password by id.
      *
      * @param user new user's state.
-     * @return True if success. False if fail.
      */
     @Override
     public void update(final User user) {
@@ -70,7 +69,6 @@ public class UserDAOImpl extends DBConnectionManager implements UserDAO {
      * Delete User by id AND login AND password.
      *
      * @param user for delete.
-     * @return true if User was deleted. False if User not exist.
      */
     @Override
     public void delete(final User user) {

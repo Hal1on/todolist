@@ -8,6 +8,9 @@ import command.commands.authorization.LogoutCommand;
 import command.commands.authorization.RegistrationCommand;
 import command.commands.todolist.AddTaskCommand;
 
+/**
+ * Class that contains enumeration of commands.
+ */
 public enum CommandEnum {
     LOGIN {
         {
@@ -40,10 +43,13 @@ public enum CommandEnum {
         }
     };
 
-
-
     ActionCommand command;
 
+    /**
+     * Returns current command.
+     *
+     * @return current command.
+     */
     public ActionCommand getCurrentCommand() {
         return command;
     }

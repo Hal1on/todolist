@@ -4,7 +4,7 @@ import entity.User;
 
 import java.sql.SQLException;
 
-public interface UserDAO { // CRUD : created, read, update, delete.
+public interface UserDAO {
     void create(User user);
 
     User read(String login);

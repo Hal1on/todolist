@@ -13,25 +13,26 @@ public class TaskLogic {
         TaskDAO taskDAO = new TaskDAOImpl();
         return taskDAO.getAll(userId);
     }
-    public static List<Task> addTask(String textField, String login, boolean completed) {
+
+    public static void addTask(String textField, String data, String login, boolean completed) {
         if (textField != null && login != null) {
             UserDAOImpl userDAO = new UserDAOImpl();
             User user = userDAO.read(login);
             Task task = new Task();
             task.setTextField(textField);
+            task.setData(data);
             task.setCompleted(completed);
             task.setUserId(user.getId());
             TaskDAO taskDAO = new TaskDAOImpl();
             taskDAO.create(task);
-            return taskDAO.getAll(user.getId());
         }
-        return null;
     }
 
-    public static void editTask(String textField, boolean completed, int taskId) {
+    public static void editTask(String textField, boolean completed, String data, int taskId) {
         Task task = new Task();
         task.setCompleted(completed);
         task.setTextField(textField);
+        task.setData(data);
         task.setId(taskId);
         TaskDAO taskDAO = new TaskDAOImpl();
         taskDAO.update(task);

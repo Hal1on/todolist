@@ -11,16 +11,16 @@ public class RegistrationCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
-        // извлечение из запроса логина и пароля
+        // extracting from the request login and password.
         String login = request.getParameter(LOGIN);
         String password = request.getParameter(PASSWORD);
-        // проверка логина и пароля
         if (login == null || password == null) {
             page = ConfigurationManager.getProperty("path.page.registration");
             return page;
         }
+        // login and password verification.
         if (RegistrationLogic.userRegistered(login, password)) {
-            // определение пути к main.jsp
+            // path definition to login.jsp
             request.getSession().invalidate();
             page = ConfigurationManager.getProperty("path.page.login");
         } else {

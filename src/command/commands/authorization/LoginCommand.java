@@ -17,19 +17,18 @@ public class LoginCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
-        // извлечение из запроса логина и пароля
+        // extracting from the request login and password.
         String login = request.getParameter(LOGIN);
         String password = request.getParameter(PASSWORD);
-        // проверка логина и пароля
+        // login and password verification.
         User user = LoginLogic.checkLogin(login, password);
-
         if (user != null) {
             request.getSession().setAttribute(LOGIN, login);
             request.getSession().setAttribute(PASSWORD, password);
             request.setAttribute(LOGIN, login);
             List<Task> tasks = TaskLogic.getTasks(user.getId());
             request.setAttribute(TASKS, tasks);
-            // определение пути к main.jsp
+            // path definition to main.jsp
             page = ConfigurationManager.getProperty("path.page.main");
         } else {
             request.setAttribute(LOGIN, login);

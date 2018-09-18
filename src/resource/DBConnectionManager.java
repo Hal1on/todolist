@@ -4,9 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Class that connects database.
+ */
 public class DBConnectionManager {
     private Connection connection;
 
+    /**
+     * Default constructor.
+     */
     public DBConnectionManager() {
         String driver = ConfigurationManager.getProperty("jdbc.driver");
         String url = ConfigurationManager.getProperty("jdbc.url");
@@ -24,6 +30,11 @@ public class DBConnectionManager {
         }
     }
 
+    /**
+     * Gets connection to database
+     *
+     * @return connection.
+     */
     public Connection getConnection() {
         return this.connection;
     }

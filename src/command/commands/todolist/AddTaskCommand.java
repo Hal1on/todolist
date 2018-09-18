@@ -14,12 +14,13 @@ public class AddTaskCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
         String textField = request.getParameter(TEXT_FIELD);
+        String data = request.getParameter(DATA);
         boolean completed = Boolean.parseBoolean(request.getParameter(COMPLETED));
         String login = request.getParameter(LOGIN);
 
-        List<Task> tasks = TaskLogic.addTask(textField, login, completed);
-
-        if (tasks != null) {
+        TaskLogic.addTask(textField, data, login, completed);
+        List<Task> tasks = TaskLogic.getTasks(Integer.parseInt(request.getParameter(USER_ID)));
+        if (tasks != null && data != null) {
             page = ConfigurationManager.getProperty("path.page.main");
             request.setAttribute(TASKS, tasks);
             request.setAttribute(LOGIN, login);

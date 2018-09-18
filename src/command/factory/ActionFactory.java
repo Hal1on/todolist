@@ -7,16 +7,22 @@ import command.EmptyCommand;
 import command.client.CommandEnum;
 import resource.MessageManager;
 
+/**
+ * Class that define command that came from JSP.
+ */
 public class ActionFactory {
+    /**
+     * @param request servlet request.
+     * @return current command.
+     */
     public ActionCommand defineCommand(HttpServletRequest request) {
         ActionCommand current = new EmptyCommand();
-        // извлечение имени команды из запроса
+        // Extracts command from request.
         String action = request.getParameter("command");
         if (action == null || action.isEmpty()) {
-            // если команда не задана в текущем запросе
             return current;
         }
-        // получение объекта, соответствующего команде
+        // Gets object of command.
         try {
             CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
             current = currentEnum.getCurrentCommand();

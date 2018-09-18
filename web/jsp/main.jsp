@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Main page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="<c:url value="/static/css/style.css" />" rel="stylesheet">
     <link href="<c:url value="/static/css/bootstrap.css" />" rel="stylesheet">
     <script
@@ -39,18 +40,22 @@
             <c:forEach items="${tasks}" var="element">
                 <c:choose>
                     <c:when test="${element.completed}">
-                        <p style="text-decoration: line-through">${element.textField}</p>
+                        <p class="lineThrough">${element.textField}</p>
+
                     </c:when>
                     <c:otherwise>
                         <p>${element.textField}</p>
                     </c:otherwise>
                 </c:choose>
+                <p>${element.data}</p>
                 <form id="${element.id}">
                     <input type="hidden" id="command" name="command" value="edit">
                     <input type="hidden" id="task_id" name="task_id" value="${element.id}">
                     <input type="hidden" id="login" name="login" value="${login}">
                     <input type="hidden" id="previous_text_field" name="previous_text_field"
                            value="${element.textField}">
+                    <input type="hidden" id="previous_data" name="previous_data"
+                           value="${element.data}">
                     <input type="hidden" id="completed" name="completed" value="${element.completed}">
                     <input type="hidden" id="user_id" name="user_id" value="${user_id}">
                     <input type="button" onclick="scriptEdit(${element.id})" value="edit">
@@ -66,7 +71,9 @@
             <form name="addTaskForm" method="POST" action="controller">
                 <input type="hidden" name="command" value="addtask"/>
                 <input type="hidden" name="login" value="${login}"/>
+                <input type="hidden" name="user_id" value="${user_id}"/>
                 <input type="text" name="text_field" value=""/>
+                <input type="date" name="data" value="" required/>
                 <input type="submit" value="Add"/>
             </form>
         </div>
@@ -75,13 +82,10 @@
 <div id="footer">
     <div class="container">
         <div class="row centered">
-            <a href="https://vk.com/bukhavtsov_artyom"><i class="fab fa-vk fa-2x"></i></a>
-            <a href="https://vk.com/bukhavtsov_artyom"><i class="fab fa-instagram fa-2x"></i></a>
-            <a href="https://vk.com/bukhavtsov_artyom"><i class="fab fa-github fa-2x"></i></a>
+            &#169; Artyom Bukhavtsov 2018
         </div>
     </div>
 </div>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </body>
 </html>
 

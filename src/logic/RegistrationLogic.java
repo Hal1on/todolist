@@ -10,7 +10,8 @@ public class RegistrationLogic {
         if (user.getId() == -1) {
             User newUser = new User();
             newUser.setLogin(enterLogin);
-            newUser.setPassword(enterPassword);
+            int convertPassword = enterPassword.hashCode();
+            newUser.setPassword(String.valueOf(convertPassword));
             userDAO.create(newUser);
             return true;
         }

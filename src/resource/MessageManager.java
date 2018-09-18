@@ -1,11 +1,12 @@
 package resource;
 
 import java.util.ResourceBundle;
-
+/**
+ * Class extracts information from messages.properties file.
+ */
 public class MessageManager {
     private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("messages");
 
-    // класс извлекает информацию из файла messages.properties
     private MessageManager() {
     }
 

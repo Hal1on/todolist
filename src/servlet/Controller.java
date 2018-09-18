@@ -20,6 +20,9 @@ import entity.User;
 import resource.ConfigurationManager;
 import resource.MessageManager;
 
+/**
+ * Controller accepts all requests.
+ */
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,17 +35,23 @@ public class Controller extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     * Handles the HTTP GET and POST method.
+     *
+     * @param request  servlet request
+     * @param response servlet response
+     * @throws ServletException if the included resource(servlet, JSP page, HTML file) throws this exception
+     * @throws IOException      if the included resource throws this exception
+     */
     private void processRequest(HttpServletRequest request,
                                 HttpServletResponse response)
             throws ServletException, IOException {
         String page = null;
-        // определение команды, пришедшей из JSP
+
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(request);
-        /*
-         * вызов реализованного метода execute() и передача параметров
-         * классу-обработчику конкретной команды
-         */
+
+        // Process execute() method and gets parameters to class-handler.
         page = command.execute(request);
         if (page.equals("/jsp/main.jsp")) {
             String login = request.getParameter(ActionCommand.LOGIN);
@@ -53,18 +62,12 @@ public class Controller extends HttpServlet {
             request.setAttribute(ActionCommand.TASKS, tasks);
             request.setAttribute(ActionCommand.USER_ID, user.getId());
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            // вызов страницы ответа на запрос
             dispatcher.forward(request, response);
-
-            // Вывод таблицы с задачами
-            // метод возвращает страницу ответа
-            // page = null; // поэксперементировать!
         } else if (!page.equals("/jsp/main.jsp")) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            // вызов страницы ответа на запрос
             dispatcher.forward(request, response);
         } else {
-            // установка страницы c cообщением об ошибке
+            // Sets page with error message.
             page = ConfigurationManager.getProperty("path.page.index");
             request.getSession().setAttribute("nullPage",
                     MessageManager.getProperty("message.nullpage"));
